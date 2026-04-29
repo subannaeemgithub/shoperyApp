@@ -1,14 +1,7 @@
-import HomePage from "./HomePage/HomePage"
-
+import RoutesApp from "./routes/routesApp"; // 👈 import your routes
 
 function App() {
- 
-
-  return (
-   <>
-      <HomePage />
-    </>
-  )
+  return <RoutesApp />; // 👈 use it here
 }
 
-export default App
+export default App;
