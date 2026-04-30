@@ -1,15 +1,30 @@
-import "./HomePage.css";
+
 import { useEffect, useState } from "react";
 import { getAllProducts } from "../../services/ProductApi";
 import ProductCard from "../../components/ProductCard";
 
 // icons
 import { FaShippingFast, FaHeadset, FaLock, FaUndo } from "react-icons/fa";
+import { Row } from "react-bootstrap";
+import { Link, useNavigate } from "react-router-dom";
+
+
+
+
+
+
+
+
 
 const HomePage = () => {
   const [products, setProducts] = useState([]);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
+const navigate = useNavigate();
+const addToProduct =()=>{
+  navigate('/add/product')
+}
+
 
   // fetch products
   const fetchProducts = async () => {
@@ -84,15 +99,21 @@ const HomePage = () => {
       {error && <p className="text-danger">{error}</p>}
 
       {/* 🔥 PRODUCTS GRID */}
-      <div className="product-grid">
+      <Row>     
         {products.map((p) => (
+          <div className="col-xl-2 col-lg-3 col-md-5">
           <div className="product-item" key={p._id}>
             <ProductCard product={p} />
           </div>
+          </div>
         ))}
+        </Row>
+        <button className="btn btn-success"   as={Link} to='/add/product'   >Add product</button>
+       <Link to='/add/product'> <button className="btn btn-success" >Add product</button></Link>
+       <button onClick={addToProduct}>add</button>
       </div>
 
-    </div>
+    
   );
 };
 
