@@ -5,7 +5,7 @@ import ProductCard from "../../components/ProductCard";
 
 // icons
 import { FaShippingFast, FaHeadset, FaLock, FaUndo } from "react-icons/fa";
-import { Row } from "react-bootstrap";
+import { Button, Row } from "react-bootstrap";
 import { Link, useNavigate } from "react-router-dom";
 
 
@@ -18,12 +18,10 @@ import { Link, useNavigate } from "react-router-dom";
 
 const HomePage = () => {
   const [products, setProducts] = useState([]);
+ const [editProduct, setEditProduct] = useState(null);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
-const navigate = useNavigate();
-const addToProduct =()=>{
-  navigate('/add/product')
-}
+
 
 
   // fetch products
@@ -42,6 +40,7 @@ const addToProduct =()=>{
       setLoading(false);
     }
   };
+
 
   useEffect(() => {
     fetchProducts();
@@ -92,7 +91,7 @@ const addToProduct =()=>{
       </div>
 
       {/* 🔥 TITLE */}
-      <h4 className="mb-3">Popular Products</h4>
+      <div className="mb-3 d-flex justify-content-between"><span className="h4"> Popular Products</span>  <Button className="btn btn-success"   as={Link} to='/admin'   >Admin page</Button></div>
 
       {/* 🔥 LOADING / ERROR */}
       {loading && <p>Loading products...</p>}
@@ -108,9 +107,8 @@ const addToProduct =()=>{
           </div>
         ))}
         </Row>
-        <button className="btn btn-success"   as={Link} to='/add/product'   >Add product</button>
-       <Link to='/add/product'> <button className="btn btn-success" >Add product</button></Link>
-       <button onClick={addToProduct}>add</button>
+      
+     
       </div>
 
     

@@ -8,7 +8,7 @@ const createProduct = async (req, res) => {
     const { name, description,price,category,inStock,quantity,image} = req.body;
 
     // validation
-    if (!name ||!description ||!price ||!category ||inStock == null||quantity == null) {
+    if (!name ||!description ||!price ||!category ||quantity == null) {
       return res.status(400).json({
         success: false,
         message: "Please fill all required fields"

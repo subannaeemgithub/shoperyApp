@@ -2,8 +2,9 @@ import React from 'react'
 import { Route, Routes } from 'react-router-dom'
 import HomePage from '../pages/HomePage/HomePage';
 import ProductDetail from '../pages/Products/ProductDetail';
-import AddProduct from '../pages/Products/AddProduct';
-import AdminPage from '../pages/Products/AdminPage';
+import AddProduct from '../pages/admin/AddProduct';
+import AdminDashboard from '../pages/admin/AdminDashboard';
+import EditProduct from '../pages/admin/EdiProduct';
 
 
 const routesApp = () => {
@@ -12,9 +13,8 @@ const routesApp = () => {
       <Route path="/" element={<HomePage />} />
       <Route path="/product/:id" element={<ProductDetail />} />
       <Route path='/add/product' element={<AddProduct />} />
-      <Route path="/admin" element={<AdminPage />} />
-
-      
+      <Route path="/admin" element={<AdminDashboard />} /> 
+      <Route path="/edit/product/:id" element={<EditProduct />} />    
     </Routes>
   );
 }
