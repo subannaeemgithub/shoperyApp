@@ -1,16 +1,29 @@
-import "./HomePage.css";
+
 import { useEffect, useState } from "react";
 import { getAllProducts } from "../../services/ProductApi";
 import ProductCard from "../../components/ProductCard";
 import Categories from "../Categories";
 // icons
 import { FaShippingFast, FaHeadset, FaLock, FaUndo } from "react-icons/fa";
+import { Button, Row } from "react-bootstrap";
+import { Link, useNavigate } from "react-router-dom";
+
+
+
+
+
+
+
+
 
 
 const HomePage = () => {
   const [products, setProducts] = useState([]);
+ const [editProduct, setEditProduct] = useState(null);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
+
+
 
   // fetch products
   const fetchProducts = async () => {
@@ -28,6 +41,7 @@ const HomePage = () => {
       setLoading(false);
     }
   };
+
 
   useEffect(() => {
     fetchProducts();
@@ -189,7 +203,7 @@ const HomePage = () => {
       <Categories />
 
       {/* 🔥 TITLE */}
-      <h4 className="mb-3">Popular Products</h4>
+      <div className="mb-3 d-flex justify-content-between"><span className="h4"> Popular Products</span>  <Button className="btn btn-success"   as={Link} to='/admin'   >Admin page</Button></div>
 
       {/* 🔥 LOADING / ERROR */}
       {loading && <p>Loading products...</p>}
@@ -198,17 +212,26 @@ const HomePage = () => {
       
 
       {/* 🔥 PRODUCTS GRID */}
-      <div className="product-grid">
+      <Row>     
         {products.map((p) => (
+          <div className="col-xl-2 col-lg-3 col-md-5">
           <div className="product-item" key={p._id}>
             <ProductCard product={p} />
           </div>
+          </div>
         ))}
+        </Row>
+      
+     
       </div>
 
+<<<<<<< HEAD
     </div>
     
     </>
+=======
+    
+>>>>>>> f1d339aea8acdb27f4944a569eb4c0b781d33ce6
   );
 };
 
