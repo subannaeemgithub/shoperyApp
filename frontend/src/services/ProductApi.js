@@ -9,7 +9,5 @@ import api from "./api";
 //creating a function that is getting all products API
 export const getAllProducts = async() => (await api.get('/')).data
 
-
-
 //Get product by id
 export const getProductById = async(id) => (await api.get(`/product/${id}`)).data

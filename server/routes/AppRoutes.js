@@ -9,17 +9,4 @@ router.get('/product/:id',getProductById);
 router.put('/update/:id',updateProduct);
 router.delete('/delete/:id',deleteProduct);
 
-
-
-
-
-
-
-
-
-
-
-
-
-
 module.exports=router;

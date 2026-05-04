@@ -113,49 +113,43 @@ const getProductById = async (req, res) => {
 const updateProduct = async (req, res) => {
   try {
     const id = req.params.id;
-    const { name, description, price } = req.body;
 
-    // 1. body validation
-    if (!name || !description || price == null) {
-      return res.status(400).json({
-        success: false,
-        message: "Please fill all required fields"
-      });
-    }
-
-    // 2. id format check
-    const mongoose = require("mongoose");
+    // 1. id format check
     if (!mongoose.Types.ObjectId.isValid(id)) {
       return res.status(400).json({
         success: false,
-        message: "Invalid product ID"
+        message: "Invalid product ID format"
       });
     }
 
-    // 3. check existence
-    const product = await Product.findById(id);
-    if (!product) {
+    // 2. Remove _id from body if it exists to prevent immutable field error
+    const updateData = { ...req.body };
+    delete updateData._id;
+
+    // 3. update (returns the new object)
+    const updatedProduct = await Product.findByIdAndUpdate(id, updateData, {
+      new: true,
+      runValidators: true
+    });
+
+    if (!updatedProduct) {
       return res.status(404).json({
         success: false,
         message: "Product not found"
       });
     }
 
-    // 4. update
-    const updatedProduct = await Product.findByIdAndUpdate(id, req.body, {
-      new: true,
-      runValidators: true
-    });
-
     return res.status(200).json({
       success: true,
+      message: "Product updated successfully",
       data: updatedProduct
     });
 
   } catch (error) {
     return res.status(500).json({
       success: false,
-      message: error.message
+      message: "Error updating product",
+      error: error.message
     });
   }
 };
