@@ -226,7 +226,6 @@ const HomePage = () => {
       </div>
 
 <<<<<<< HEAD
-    </div>
     
     </>
 =======

@@ -129,7 +129,7 @@ const updateProduct = async (req, res) => {
     // 3. update (returns the new object)
     const updatedProduct = await Product.findByIdAndUpdate(id, updateData, {
       new: true,
-      runValidators: true
+     
     });
 
     if (!updatedProduct) {

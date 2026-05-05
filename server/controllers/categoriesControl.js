@@ -121,6 +121,7 @@ const updateApi = async (req, res) => {
       id,
       { title, img },
       { new: true, runValidators: true }
+      { new: true}
     );
 
     if (!updateQuery) {
