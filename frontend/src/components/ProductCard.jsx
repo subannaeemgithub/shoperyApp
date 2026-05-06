@@ -3,11 +3,17 @@ import { FaShoppingCart, FaStar } from "react-icons/fa";
 import { useNavigate } from "react-router-dom";
 
 const ProductCard = ({ product }) => {
+  const navigate = useNavigate();
+  
+  // Handle image URL
+  const backendUrl = import.meta.env.VITE_API_URL || 'http://localhost:4000';
+  const imageUrl = product.image && product.image.startsWith('/upload') 
+    ? `${backendUrl}${product.image}` 
+    : product.image;
 
-const navigate  = useNavigate();
-const NavigateToDetail =(id)=>{
+  const NavigateToDetail = (id) => {
     navigate(`/product/${id}`)
-}
+  }
 
   return (
     <Card>
@@ -15,9 +21,9 @@ const NavigateToDetail =(id)=>{
       {/* IMAGE */}
       <Card.Img
         variant="top"
-        src={product.image}
+        src={imageUrl}
         style={{ height: "180px", objectFit: "cover" }}
-       onClick={() => NavigateToDetail(product._id)}
+        onClick={() => NavigateToDetail(product._id)}
       />
 
       <Card.Body>

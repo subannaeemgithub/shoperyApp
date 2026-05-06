@@ -1,17 +1,17 @@
 import axios from "axios";
 
-const frontApiSetup= axios.create({
-    baseURL: import.meta.env.BASE_URL,
-    Headers: {"Content-Type":"applicagtion/json"}
+const frontApiSetup = axios.create({
+    baseURL: import.meta.env.VITE_API_URL || "http://localhost:4000",
+    headers: { "Content-Type": "application/json" }
 })
 
 //adding he data of students
-const AddingData =async (data)=> (await frontApiSetup.post('/api/product/adding',data)).data
+export const AddingData =async (data)=> (await frontApiSetup.post('/api/products/adding',data)).data
 // to see all students in ui
-const ShowingAll = async ()=> (await frontApiSetup.get('/api/product/categories')).data
+export const ShowingAll = async ()=> (await frontApiSetup.get('/api/products/categories')).data
 // getting the data of one signle student by its id
-const ShowById = async (id)=> (await frontApiSetup.get(`/api/product/getData/${id}`)).data
+export const ShowById = async (id)=> (await frontApiSetup.get(`/api/products/getData/${id}`)).data
 // updating the student data by its id
-const UpdateById = async (id,data)=> (await frontApiSetup.put(`/api/product/update/${id}`,data)).data
+export const UpdateById = async (id,data)=> (await frontApiSetup.put(`/api/products/update/${id}`,data)).data
 // Deleting the data by its Id
-const deleting= async(id)=>(await frontApiSetup.put(`/api/product/delete/${id}`)).data
+export const deleting = async (id) => (await frontApiSetup.delete(`/api/products/delete/${id}`)).data

@@ -120,7 +120,6 @@ const updateApi = async (req, res) => {
     const updateQuery = await Category.findByIdAndUpdate(
       id,
       { title, img },
-      { new: true, runValidators: true }
       { new: true}
     );
 

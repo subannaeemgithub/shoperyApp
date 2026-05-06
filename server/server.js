@@ -8,6 +8,7 @@ const rout = require('./routes/categoriesRoutes');
 
 
 const app =express();
+app.use('/upload',express.static('upload'))
 connectDB();
 
 
@@ -17,13 +18,13 @@ app.use(cors());
 
 //products api calls
 app.use('/api/products',Products)
-// localhost:4000/api/product/adding
-// localhost:4000/api/product/categories
-// localhost:4000/api/product/getData/:id
-// localhost:4000/api/product/update/:id
-// localhost:4000/api/product/delete/:id
+// localhost:4000/api/products/adding
+// localhost:4000/api/products/categories
+// localhost:4000/api/products/getData/:id
+// localhost:4000/api/products/update/:id
+// localhost:4000/api/products/delete/:id
 
-app.use('/api/product',rout)
+app.use('/api/products',rout)
 
 
 
