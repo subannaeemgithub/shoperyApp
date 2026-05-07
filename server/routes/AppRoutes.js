@@ -13,13 +13,4 @@ router.delete('/delete/:id',deleteProduct);
 
 
 
-
-
-
-
-
-
-
-
-
 module.exports=router;
